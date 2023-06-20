@@ -3,7 +3,7 @@ import { HiOutlineHome, HiPhone } from "react-icons/hi2";
 
 const ServiceTime = () => {
     return (
-   <div className=" grid md:grid-cols-3 rounded-3xl lg:grid-cols-3 gap-20 justify-between w-2/3 mx-auto mb-5 p-10 bg-neutral text-neutral-content">
+   <div className=" mt-20 grid md:grid-cols-3 rounded-3xl lg:grid-cols-3 gap-20 justify-between w-2/3 mx-auto mb-5 p-10 bg-neutral text-neutral-content">
     <div>
     <div className='flex   gap-1'>
         <div className=' text-5xl'>

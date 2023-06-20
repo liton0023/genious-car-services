@@ -20,7 +20,7 @@ const Herader = () => {
        {meniAitem}
       </ul>
     </div>
-    <Link to='/' className="btn btn-ghost normal-case text-xl">
+    <Link to='/home' className=" normal-case text-xl">
         <img src={logo} alt="" />
     </Link>
   </div>
