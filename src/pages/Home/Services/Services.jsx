@@ -5,7 +5,7 @@ import ServicesCard from './ServicesCard';
 const Services = () => {
     const [services,setServices]=useState([]);
     useEffect(()=>{
-    fetch('service.json')
+    fetch('http://localhost:5000/services')
     .then(res=>res.json())
     .then(data=>setServices(data))
     },[])
@@ -28,7 +28,10 @@ const Services = () => {
                }
             </div>
             <div className='text-center py-2'>
-            <button className="btn btn-active btn-secondary"> <Link to='/'> More Services</Link></button>
+            <Link to='/'> 
+            <button className="btn btn-active btn-secondary">More Services</button>
+            </Link>
+           
             </div>
 
         </div>

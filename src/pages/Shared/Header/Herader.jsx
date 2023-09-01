@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import logo from '../../../assets/logo.svg';
 
 const Herader = () => {
 
+  const {user,logOut}=useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+    .then(() =>{
+      
+    })
+    .catch( error => console.log(error))
+}
+
+
     const meniAitem= <>
     <li>  <Link className='font-semibold' to='/Home'>Home</Link> </li>
-    <li>  <Link className='font-semibold' to='/login'>Login</Link> </li>
+    <li>  <Link className='font-semibold' to='/about'>About</Link> </li>
+    { user?.email ?  <>
+            <li><Link className='font-semibold' to="/orders">My Bookings</Link></li>
+            <li><button className='font-semibold ' onClick={handleLogOut}>Log out</button></li>
+        </> 
+        : <li> <Link to="/login">Login</Link> </li>}
     </>
     return (
         <div>
@@ -30,7 +47,7 @@ const Herader = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <Link to='/'><button className="btn btn-warning">Apponiment</button></Link>
+    <Link to='/checkout'><button className="btn btn-warning">Apponiment</button></Link>
   </div>
 </div>
         </div>

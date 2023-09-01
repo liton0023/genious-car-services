@@ -1,10 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import img from '../../../assets/images/login/login.svg';
+import SocialSingIn from '../../Shared/SocialSingIn/SocialSingIn';
 const Login = () => {
+const {login}=useContext(AuthContext);
+
+const location=useLocation()
+const navigate=useNavigate()
+const from=location.state?.from?.pathname || '/home' ;
 
     const handleLogin=e=>{
         e.preventDefault();
+        const form=event.target;
+        const email=form.email.value;
+        const password=form.password.value;
+
+        login(email,password)
+        .then(result=>{
+          const user=result.user;
+          console.log(user);
+          navigate(from, { replace: true })
+
+          const loggedUser={
+            email:user.email
+
+          }
+        })
+        .then(err=>console.error(err));
 
     }
     return (
@@ -27,7 +50,7 @@ const Login = () => {
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="text" name='password' placeholder="password" className="input input-bordered" />
+          <input type="password" name='password' placeholder="password" className="input input-bordered" />
           <label className="label">
             <Link to='/' className="label-text-alt link link-hover">Forgot password?</Link>
           </label>
@@ -38,6 +61,7 @@ const Login = () => {
         </div>
       </form>
       <p className='text-center pb-5'>New to Genious Car? <Link to='/singup' className='text-orange-600 font-bold'> Sing Up</Link> </p>
+      <SocialSingIn></SocialSingIn>
     </div>
   </div>
 </div>
